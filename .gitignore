@@ -30,3 +30,17 @@
 *.exe
 *.out
 *.app
+
+# Emacs
+*~
+
+# Hunter/polly 
+_logs/*
+_builds/*
+_install/*
+_framework/*
+_os/*
+_archives/*
+_assets/*
+_ci/*
+polly-master/*
