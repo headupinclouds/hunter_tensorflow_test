@@ -11,6 +11,13 @@ project(hunter-tensorflow-test)
 
 option(htt_USE_TF_SUBMODULE "Use tensorflow as submodule" ON)
 
+# option(tensorflow_PATH_STATIC_LIB
+# option(tensorflow_CUDNN_INCLUDE
+# option(tensorflow_PATH_CUDNN_STATIC_LIB
+    
+option(htt_ENABLE_GPU "Enable the GPU" ON)
+option(htt_ENABLE_GRPC_SUPPORT "Enable GRPC" ON)
+
 ### Download dependencies ###
 
 hunter_add_package(tensorflow)
