@@ -24,8 +24,8 @@ hunter_add_package(tensorflow)
 find_package(tensorflow CONFIG REQUIRED) # tensorflow::tensorflow
 
 ### Targets ###
-add_executable(simple simple.cpp)
-target_link_libraries(simple PUBLIC tensorflow::tensorflow)
+#add_executable(simple simple.cpp)
+#target_link_libraries(simple PUBLIC tensorflow::tensorflow)
 
 add_subdirectory(src)
 

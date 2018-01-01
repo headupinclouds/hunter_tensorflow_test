@@ -1,9 +1,10 @@
 #!/bin/bash
 
 TOOLCHAIN=xcode-hid-sections
-CONFIG=Release
+CONFIG=Debug
 
 tf_opts=(
+    HUNTER_CONFIGURATION_TYPES=${CONFIG}
     CUDA_TOOLKIT_ROOT_DIR=/Developer/NVIDIA/CUDA-9.0
     CUDA_TOOLKIT_TARGET_DIR=/Developer/NVIDIA/CUDA-9.0
     tensorflow_PATH_STATIC_LIB=/Developer/NVIDIA/CUDA-9.0/lib
