@@ -1,6 +1,7 @@
 #!/bin/bash
 
-TOOLCHAIN=xcode-hid-sections
+#TOOLCHAIN=xcode-hid-sections
+TOOLCHAIN=xcode
 CONFIG=Debug
 
 tf_opts=(
@@ -11,7 +12,7 @@ tf_opts=(
     tensorflow_CUDNN_INCLUDE=$(dirname $(dirname ${CUDNN_PATH}))/include
     tensorflow_PATH_CUDNN_STATIC_LIB=$(dirname ${CUDNN_PATH})
     tensorflow_BUILD_CC_TESTS=OFF
-    htt_ENABLE_GPU=ON    
+    htt_ENABLE_GPU=OFF
     htt_ENABLE_GRPC_SUPPORT=ON
 )
 

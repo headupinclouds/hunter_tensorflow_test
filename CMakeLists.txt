@@ -20,31 +20,41 @@ option(htt_ENABLE_GRPC_SUPPORT "Enable GRPC" ON)
 
 ### Download dependencies ###
 
+# https://github.com/caffe2/caffe2/blob/f2cf8933fc8c04f149ea27f30381517df358c1b5/cmake/Utils.cmake#L173-L185
+function(add_whole_archive_flag lib output_var)
+  if(CMAKE_CXX_COMPILER_ID MATCHES "Clang")
+    set(${output_var} -Wl,-force_load,$<TARGET_FILE:${lib}> PARENT_SCOPE)
+  elseif(MSVC)
+    # In MSVC, we will add whole archive in default.
+    set(${output_var} -WHOLEARCHIVE:$<TARGET_FILE:${lib}> PARENT_SCOPE)
+  else()
+    # Assume everything else is like gcc
+    set(${output_var} -Wl,--whole-archive ${lib} -Wl,--no-whole-archive PARENT_SCOPE)
+  endif()
+endfunction()
+
 hunter_add_package(tensorflow)
 find_package(tensorflow CONFIG REQUIRED) # tensorflow::tensorflow
 
 ### Targets ###
-#add_executable(simple simple.cpp)
-#target_link_libraries(simple PUBLIC tensorflow::tensorflow)
-
 add_subdirectory(src)
 
 return() # todo
 
 ### Testing ###
-enable_testing()
+# enable_testing()
 
-hunter_add_package(GTest)
-find_package(GTest CONFIG REQUIRED) # GTest::main
+# hunter_add_package(GTest)
+# find_package(GTest CONFIG REQUIRED) # GTest::main
 
-hunter_add_package(gauze)
-find_package(gauze CONFIG REQUIRED)
+# hunter_add_package(gauze)
+# find_package(gauze CONFIG REQUIRED)
 
-add_executable(test test.cpp)
-target_link_libraries(test PUBLIC tensorflow::tensorflow gauze::gauze GTest::main)
+# add_executable(test test.cpp)
+# target_link_libraries(test PUBLIC tensorflow::tensorflow gauze::gauze GTest::main)
 
-gauze_add_test(
-  NAME SimpleTest 
-  COMMAND test
-  WORKING_DIRECTORY "${CMAKE_CURRENT_LIST_DIR}"
-  )
+# gauze_add_test(
+#   NAME SimpleTest 
+#   COMMAND test
+#   WORKING_DIRECTORY "${CMAKE_CURRENT_LIST_DIR}"
+#   )
